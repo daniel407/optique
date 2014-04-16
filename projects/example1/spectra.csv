@@ -1,0 +1,5 @@
+#Spectra,,,,
+type,polarization,angle(deg),plot,file
+transmission,average,0,T plot,
+reflection front,senkrecht,10,,front reflection
+reflection back,parallel,50,,back reflection
