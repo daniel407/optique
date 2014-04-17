@@ -1,5 +1,7 @@
 package org.optique.elements.spectrum;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
@@ -86,16 +88,60 @@ public class Spectrum extends TreeMap<Double, Double>{
 		return value;
 	}
 	
-	
-	public void plot(){
-		XYPlotter xyPlotter = new XYPlotter(name, this, name, "wavelength (nm)", "value");
+	/**
+	 * Plots the spectrum into a png file.
+	 * If outputfile is null, the plot will be drawn in a frame.
+	 * @param width
+	 * @param height
+	 * @param outputFile
+	 * @throws IOException
+	 */
+	public void plot(int width, int height, File outputFile) throws IOException{
+		XYPlotter xyPlotter = new XYPlotter(name, this, name, "wavelength (nm)", "value", width, height, outputFile);
 	}
+	
+	
 	
 	public void print(){
 		for(double key : this.keySet()){
 			System.out.println(key + " : " + this.get(key));
 		}
 			
+	}
+	
+	
+	public static int spectraCode(String polarization, String spectrumType){
+		
+		if(polarization.equals("senkrecht")){
+			if(spectrumType.equals("transmission"))
+				return Spectrum.TS;
+			if(spectrumType.equals("front reflection"))
+				return Spectrum.RS;
+			if(spectrumType.equals("back reflection"))
+				return Spectrum.RBS;
+			
+		}
+		
+		if(polarization.equals("parallel")){
+			if(spectrumType.equals("transmission"))
+				return Spectrum.TP;
+			if(spectrumType.equals("front reflection"))
+				return Spectrum.RP;
+			if(spectrumType.equals("back reflection"))
+				return Spectrum.RBP;
+		}
+		
+		if(polarization.equals("average")){
+			if(spectrumType.equals("transmission"))
+				return Spectrum.TA;
+			if(spectrumType.equals("front reflection"))
+				return Spectrum.RA;
+			if(spectrumType.equals("back reflection"))
+				return Spectrum.RBA;
+		}
+		
+		
+		return -1;
 	}
 	
 	

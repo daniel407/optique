@@ -1,5 +1,7 @@
 package org.optique.elements.stack;
 
+import java.util.ArrayList;
+
 import org.optique.elements.layer.Layer;
 import org.optique.elements.spectrum.Spectrum;
 import org.optique.math.ComplexMatrix;
@@ -14,6 +16,23 @@ public class Stack {
 	
 	private Layer[] layers;
 	private ComplexNumber[] angles;
+	
+	
+	public Stack(){
+	}
+	
+	
+	public Stack(Layer[] layers){
+		this.layers=layers;
+		angles = new ComplexNumber[layers.length];
+	}
+	
+	public Stack(ArrayList<Layer> layers){
+		this.layers = layers.toArray(new Layer[0]);
+		angles = new ComplexNumber[this.layers.length];
+	}
+	
+	
 	
 	
 	

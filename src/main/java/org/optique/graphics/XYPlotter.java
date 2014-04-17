@@ -1,11 +1,14 @@
 package org.optique.graphics;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -55,7 +58,7 @@ public class XYPlotter {
 		chartFrame.setVisible(true);
 	}
 	
-	public XYPlotter(String seriesName, TreeMap<Double, Double> data, String title, String xAxis, String yAxis){
+	public XYPlotter(String seriesName, TreeMap<Double, Double> data, String title, String xAxis, String yAxis, int width, int height, File outputFile) throws IOException{
 		XYSeries series = new XYSeries(seriesName);
 		for(Double key : data.keySet()){
 			series.add(key, data.get(key));
@@ -63,15 +66,21 @@ public class XYPlotter {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		dataset.addSeries(series);
 		JFreeChart chart = ChartFactory.createXYLineChart(title, xAxis, yAxis, 	dataset, PlotOrientation.VERTICAL,	true,true,false);
-        XYPlot plot = (XYPlot) chart.getPlot();
+		XYPlot plot = (XYPlot) chart.getPlot();
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesLinesVisible(0, false);
         renderer.setSeriesLinesVisible(1, false);       
         plot.setRenderer(renderer);
-		ChartFrame chartFrame = new ChartFrame(title,chart);
-		chartFrame.setSize(300,300);
-		chartFrame.setVisible(true);
+        if(outputFile == null){
+    		ChartFrame chartFrame = new ChartFrame(title,chart);
+    		chartFrame.setSize(width,height);
+    		chartFrame.setVisible(true);
+        } else {
+			ChartUtilities.saveChartAsPNG(outputFile, chart, width, height);
+        }
+
 	}
+	
 	
 	
   	public void chartAndOverlay(TreeMap<String,TreeMap<Double,Double>> data, String title, String xAxis, String yAxis){
