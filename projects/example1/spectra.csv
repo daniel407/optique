@@ -1,5 +1,0 @@
-#Spectra,,,,,,,
-type,polarization,angle(deg),plot,file,wavelength start (nm),wavelength end (nm),steps
-transmission,average,0,transmission,,300,1000,71
-reflection front,senkrecht,10,,front reflection,300,1000,71
-reflection back,parallel,50,,back reflection,300,1000,71
