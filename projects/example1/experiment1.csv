@@ -1,0 +1,33 @@
+#Experiment,,
+#Stacks,example stack,Stack 2
+material,thickness (nm),thickness (nm)
+air,1.00E+006,1.00E+006
+materialA,50,80
+materialB,100,100
+glass,5.00E+006,5.00E+006
+air,1.00E+006,1.00E+006
+#Stacks end,,
+,,
+,,
+#Calculations,,
+spectrum type,transmission,transmission
+polarization,average,average
+angle (deg),10,10
+wavelength start (nm),300,300
+wavelength end (nm),1000,1000
+number of steps,71,71
+raw data file,allspectra.csv,allspectra.csv
+plot picture,,
+#Calculations end,,
+,,
+,,
+#Calculations,,
+spectrum type,front reflection,front reflection
+polarization,senkrecht,senkrecht
+angle (deg),15,15
+wavelength start (nm),300,300
+wavelength end (nm),1000,1000
+number of steps,71,71
+raw data file,allspectra.csv,allspectra.csv
+plot picture,,
+#Calculations end,,
